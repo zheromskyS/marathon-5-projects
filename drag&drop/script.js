@@ -2,7 +2,7 @@ const item = document.querySelector(".item");
 const placeholders = document.querySelectorAll(".placeholder");
 
 window.addEventListener("load", () => {
-  getPlaceholder();
+  getPlaceholder().append(item);
 });
 
 //drag&drop
@@ -41,11 +41,10 @@ item.addEventListener("dragend", (event) => {
 // localstorage
 
 function setPlaceholder(target) {
-  localStorage.setItem("placeholder", target.classList[1]);
+  localStorage.setItem("placeholder", target.dataset.placeholder);
 }
 
 function getPlaceholder() {
-  document
-    .querySelector(`.${localStorage.getItem("placeholder")}`)
-    .append(item);
+  return document
+    .querySelector(`[data-placeholder="${localStorage.getItem("placeholder")}"]`);
 }
